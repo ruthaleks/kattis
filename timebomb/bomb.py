@@ -25,10 +25,17 @@ def split_numbers(numbers: str):
 def main():
     valid_numbers = dict(map(reversed, enumerate(split_numbers(numbers.strip()))))
     
-    indata = sys.stdin.read().strip()
-    print(split_numbers(indata))
-    number = list(map(valid_numbers.get, split_numbers(indata)))
-    print(number)
+    indata = sys.stdin.read()[:-1]
+    number_list = list(map(valid_numbers.get, split_numbers(indata)))
+    
+    number = int("".join(map(str, filter(bool, number_list))))
+
+    if None in number_list:
+        print("BOOM!!")
+    elif (number % 6) == 0:
+        print("BEER!!")
+    else: 
+        print("BOOM!!")
 
 
     
